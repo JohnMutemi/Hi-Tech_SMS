@@ -1,53 +1,59 @@
 import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Check } from "lucide-react"
+import Link from "next/link"
 
 const plans = [
   {
     name: "Starter",
-    price: "KSh 5,000",
+    price: "KSh 30,000",
     period: "/month",
-    description: "Perfect for small schools getting started",
+    description: "Perfect for small schools with up to 300 students",
     features: [
-      "Up to 200 students",
-      "5 admin users",
-      "Basic attendance tracking",
+      "Up to 300 students",
+      "Basic student management",
+      "Attendance tracking",
       "Grade management",
       "Parent communication",
       "Email support",
+      "Basic reporting",
     ],
     popular: false,
   },
   {
     name: "Professional",
-    price: "KSh 15,000",
+    price: "KSh 45,000",
     period: "/month",
-    description: "Ideal for growing schools with advanced needs",
+    description: "Ideal for medium schools with advanced features",
     features: [
-      "Up to 1,000 students",
-      "Unlimited admin users",
-      "Advanced analytics",
-      "Financial management",
+      "Up to 1,500 students",
+      "All Starter features",
+      "Fee management & invoicing",
+      "Advanced timetable generation",
       "SMS notifications",
+      "Financial reports & analytics",
       "Mobile app access",
+      "Library management",
       "Priority support",
-      "Custom reports",
     ],
     popular: true,
   },
   {
     name: "Enterprise",
-    price: "Custom",
-    period: "",
-    description: "For large institutions with complex requirements",
+    price: "KSh 60,000",
+    period: "/month",
+    description: "For large institutions with premium features",
     features: [
       "Unlimited students",
+      "All Professional features",
       "Multi-campus support",
       "Custom integrations",
-      "Advanced security",
-      "Dedicated support",
-      "Training & onboarding",
-      "Custom development",
-      "SLA guarantee",
+      "Advanced analytics & AI insights",
+      "White-label solution",
+      "Transport management",
+      "Hostel management",
+      "Dedicated support manager",
+      "On-premise deployment option",
     ],
     popular: false,
   },
@@ -55,60 +61,54 @@ const plans = [
 
 export function PricingSection() {
   return (
-    <section className="py-20 bg-gray-50">
+    <section id="pricing" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">Simple, Transparent Pricing</h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
             Choose the perfect plan for your school. All plans include a 30-day free trial with no setup fees.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8">
           {plans.map((plan, index) => (
-            <div
+            <Card
               key={index}
-              className={`relative bg-white rounded-2xl shadow-lg p-8 ${
-                plan.popular ? "ring-2 ring-red-500 scale-105" : ""
-              }`}
+              className={`relative ${plan.popular ? "border-red-500 shadow-lg scale-105" : "border-gray-200"}`}
             >
               {plan.popular && (
                 <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                  <span className="bg-gradient-to-r from-red-500 to-pink-500 text-white px-4 py-2 rounded-full text-sm font-medium">
-                    Most Popular
-                  </span>
+                  <span className="bg-red-500 text-white px-4 py-1 rounded-full text-sm font-medium">Most Popular</span>
                 </div>
               )}
 
-              <div className="text-center mb-8">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">{plan.name}</h3>
-                <p className="text-gray-600 mb-4">{plan.description}</p>
-                <div className="flex items-baseline justify-center">
+              <CardHeader className="text-center pb-8">
+                <CardTitle className="text-2xl font-bold text-gray-900">{plan.name}</CardTitle>
+                <div className="mt-4">
                   <span className="text-4xl font-bold text-gray-900">{plan.price}</span>
-                  <span className="text-gray-600 ml-1">{plan.period}</span>
+                  <span className="text-gray-600">{plan.period}</span>
                 </div>
-              </div>
+                <CardDescription className="mt-4 text-gray-600">{plan.description}</CardDescription>
+              </CardHeader>
 
-              <ul className="space-y-4 mb-8">
-                {plan.features.map((feature, featureIndex) => (
-                  <li key={featureIndex} className="flex items-center">
-                    <Check className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
-                    <span className="text-gray-700">{feature}</span>
-                  </li>
-                ))}
-              </ul>
+              <CardContent className="space-y-6">
+                <ul className="space-y-3">
+                  {plan.features.map((feature, featureIndex) => (
+                    <li key={featureIndex} className="flex items-center">
+                      <Check className="w-5 h-5 text-green-500 mr-3 flex-shrink-0" />
+                      <span className="text-gray-700">{feature}</span>
+                    </li>
+                  ))}
+                </ul>
 
-              <Button
-                className={`w-full ${
-                  plan.popular
-                    ? "bg-gradient-to-r from-red-500 to-pink-500 hover:from-red-600 hover:to-pink-600"
-                    : "bg-gray-900 hover:bg-gray-800"
-                }`}
-                size="lg"
-              >
-                {plan.name === "Enterprise" ? "Contact Sales" : "Start Free Trial"}
-              </Button>
-            </div>
+                <Button
+                  asChild
+                  className={`w-full ${plan.popular ? "bg-red-500 hover:bg-red-600" : "bg-gray-900 hover:bg-gray-800"}`}
+                >
+                  <Link href="/demo">{plan.name === "Enterprise" ? "Contact Sales" : "Start Free Trial"}</Link>
+                </Button>
+              </CardContent>
+            </Card>
           ))}
         </div>
 
@@ -116,8 +116,8 @@ export function PricingSection() {
           <p className="text-gray-600 mb-4">
             Need a custom solution? We offer tailored packages for unique requirements.
           </p>
-          <Button variant="outline" size="lg">
-            Contact Our Sales Team
+          <Button variant="outline" asChild>
+            <Link href="#contact">Contact Our Sales Team</Link>
           </Button>
         </div>
       </div>
