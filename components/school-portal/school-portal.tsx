@@ -9,13 +9,6 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Badge } from "@/components/ui/badge"
 import { School, User, Eye, EyeOff } from "lucide-react"
-import {
-  getSchool,
-  authenticateSchoolAdmin,
-  setSchoolAdminSession,
-  getSchoolAdminSession,
-  clearSchoolAdminSession,
-} from "@/lib/school-storage"
 import type { SchoolData } from "@/lib/school-storage"
 import { SchoolSetupDashboard } from "./school-setup-dashboard"
 
@@ -35,38 +28,47 @@ export function SchoolPortal({ schoolCode }: SchoolPortalProps) {
   const [loginError, setLoginError] = useState("")
 
   useEffect(() => {
-    // Get school data from localStorage
-    const school = getSchool(schoolCode)
-    if (school) {
-      setSchoolData(school)
-
-      // Check if admin is already logged in
-      const session = getSchoolAdminSession(schoolCode)
-      if (session) {
-        setIsLoggedIn(true)
+    const fetchSchool = async () => {
+      try {
+        const response = await fetch(`/api/schools/${schoolCode}`)
+        if (response.ok) {
+          const data = await response.json()
+          setSchoolData(data.school)
+        }
+      } catch (error) {
+        console.error("Error fetching school:", error)
       }
+      setIsLoading(false)
     }
-    setIsLoading(false)
+
+    fetchSchool()
   }, [schoolCode])
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoginError("")
 
-    if (!schoolData) return
+    try {
+      const response = await fetch(`/api/schools/${schoolCode}/auth`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email: loginData.email, password: loginData.password }),
+      })
 
-    const isValid = authenticateSchoolAdmin(schoolCode, loginData.email, loginData.password)
-
-    if (isValid) {
-      setSchoolAdminSession(schoolCode, loginData.email)
-      setIsLoggedIn(true)
-    } else {
-      setLoginError("Invalid email or password. Please check your credentials.")
+      if (response.ok) {
+        setIsLoggedIn(true)
+        // Store session in localStorage for client-side state
+        localStorage.setItem(`school_session_${schoolCode}`, loginData.email)
+      } else {
+        setLoginError("Invalid email or password. Please check your credentials.")
+      }
+    } catch (error) {
+      setLoginError("Login failed. Please try again.")
     }
   }
 
   const handleLogout = () => {
-    clearSchoolAdminSession(schoolCode)
+    localStorage.removeItem(`school_session_${schoolCode}`)
     setIsLoggedIn(false)
     setLoginData({ email: "", password: "" })
   }
