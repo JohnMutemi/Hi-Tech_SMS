@@ -1,38 +1,22 @@
-"use client"
-
 import Link from "next/link"
-import { Facebook, Twitter, Instagram, Mail, Phone, MapPin } from "lucide-react"
+import { GraduationCap, Facebook, Twitter, Instagram, Mail, Phone } from "lucide-react"
 
 export function Footer() {
   return (
     <footer className="bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="relative">
-                {/* Main logo container */}
-                <div className="w-8 h-8 bg-gradient-to-br from-blue-600 via-purple-600 to-indigo-600 rounded-lg flex items-center justify-center shadow-lg transform rotate-3">
-                  <div className="bg-white rounded-md w-5 h-5 flex items-center justify-center transform -rotate-3">
-                    <div className="text-blue-600 font-bold text-xs">📚</div>
-                  </div>
-                </div>
-                {/* Tech indicator */}
-                <div className="absolute -top-1 -right-1 w-3 h-3 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center">
-                  <div className="w-1 h-1 bg-white rounded-full"></div>
-                </div>
+              <div className="w-10 h-10 bg-gradient-to-r from-red-500 to-pink-500 rounded-full flex items-center justify-center">
+                <GraduationCap className="w-6 h-6 text-white" />
               </div>
-              <div>
-                <h3 className="text-lg font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                  Hi-Tech SMS
-                </h3>
-                <p className="text-xs text-gray-400 uppercase tracking-wide">School Management Software</p>
-              </div>
+              <span className="text-xl font-bold">EduManage</span>
             </div>
-            <p className="text-gray-400 text-sm">
-              Empowering educational institutions with cutting-edge technology and comprehensive management solutions
-              for the digital age.
+            <p className="text-gray-400 leading-relaxed">
+              Empowering schools across Kenya with comprehensive management solutions that streamline operations and
+              enhance educational outcomes.
             </p>
             <div className="flex space-x-4">
               <Facebook className="w-5 h-5 text-gray-400 hover:text-white cursor-pointer" />
@@ -41,107 +25,103 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Product */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
+            <h3 className="text-lg font-semibold mb-4">Product</h3>
+            <ul className="space-y-2">
               <li>
-                <button
-                  onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-                  className="text-gray-400 hover:text-white cursor-pointer"
-                >
-                  About Us
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => document.getElementById("features")?.scrollIntoView({ behavior: "smooth" })}
-                  className="text-gray-400 hover:text-white cursor-pointer"
-                >
+                <Link href="/features" className="text-gray-400 hover:text-white">
                   Features
-                </button>
-              </li>
-              <li>
-                <button
-                  onClick={() => document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" })}
-                  className="text-gray-400 hover:text-white cursor-pointer"
-                >
-                  Pricing
-                </button>
-              </li>
-              <li>
-                <Link href="/demo" className="text-gray-400 hover:text-white">
-                  Free Demo
                 </Link>
               </li>
               <li>
-                <button
-                  onClick={() => document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" })}
-                  className="text-gray-400 hover:text-white cursor-pointer"
-                >
-                  Contact
-                </button>
+                <Link href="/pricing" className="text-gray-400 hover:text-white">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link href="/demo" className="text-gray-400 hover:text-white">
+                  Demo
+                </Link>
+              </li>
+              <li>
+                <Link href="/integrations" className="text-gray-400 hover:text-white">
+                  Integrations
+                </Link>
+              </li>
+              <li>
+                <Link href="/mobile-app" className="text-gray-400 hover:text-white">
+                  Mobile App
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Support */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Support</h4>
-            <ul className="space-y-2 text-sm">
+            <h3 className="text-lg font-semibold mb-4">Support</h3>
+            <ul className="space-y-2">
               <li>
-                <Link href="#" className="text-gray-400 hover:text-white">
+                <Link href="/help" className="text-gray-400 hover:text-white">
                   Help Center
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-400 hover:text-white">
+                <Link href="/documentation" className="text-gray-400 hover:text-white">
                   Documentation
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-400 hover:text-white">
+                <Link href="/training" className="text-gray-400 hover:text-white">
                   Training
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-400 hover:text-white">
-                  System Status
+                <Link href="/contact" className="text-gray-400 hover:text-white">
+                  Contact Us
                 </Link>
               </li>
               <li>
-                <Link href="#" className="text-gray-400 hover:text-white">
-                  Privacy Policy
+                <Link href="/status" className="text-gray-400 hover:text-white">
+                  System Status
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Info</h4>
-            <div className="space-y-3 text-sm">
+            <h3 className="text-lg font-semibold mb-4">Contact</h3>
+            <div className="space-y-3">
               <div className="flex items-center space-x-3">
-                <Phone className="w-4 h-4 text-blue-500" />
-                <span className="text-gray-400">+254 112 240 468</span>
+                <Phone className="w-5 h-5 text-gray-400" />
+                <span className="text-gray-400">+254 703 367213</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="w-4 h-4 text-blue-500" />
-                <span className="text-gray-400">info@hitechsms.co.ke</span>
+                <Mail className="w-5 h-5 text-gray-400" />
+                <span className="text-gray-400">info@edumanage.co.ke</span>
               </div>
-              <div className="flex items-center space-x-3">
-                <MapPin className="w-4 h-4 text-red-500" />
-                <span className="text-gray-400">Nairobi, Kenya</span>
+              <div className="text-gray-400">
+                <p>Nairobi, Kenya</p>
+                <p>P.O. Box 12345-00100</p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-400">
-          <p>
-            &copy; 2024 Hi-Tech School Management Software. All rights reserved. Built with ❤️ for educational
-            excellence.
-          </p>
+        <div className="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+          <p className="text-gray-400 text-sm">© 2024 EduManage. All rights reserved.</p>
+          <div className="flex space-x-6 mt-4 md:mt-0">
+            <Link href="/privacy" className="text-gray-400 hover:text-white text-sm">
+              Privacy Policy
+            </Link>
+            <Link href="/terms" className="text-gray-400 hover:text-white text-sm">
+              Terms of Service
+            </Link>
+            <Link href="/cookies" className="text-gray-400 hover:text-white text-sm">
+              Cookie Policy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

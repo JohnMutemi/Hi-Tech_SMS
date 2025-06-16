@@ -1,91 +1,111 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import {
   Users,
   BookOpen,
   Calendar,
-  CreditCard,
-  MessageSquare,
+  DollarSign,
   BarChart3,
+  MessageSquare,
   Shield,
   Smartphone,
-  Cloud,
+  Clock,
+  FileText,
+  CreditCard,
+  Bell,
 } from "lucide-react"
 
 const features = [
   {
     icon: Users,
-    title: "Student Management",
-    description: "Complete student profiles, enrollment, attendance tracking, and academic records management.",
+    title: "User Management",
+    description:
+      "Comprehensive role-based access for admins, teachers, students, and parents with secure authentication.",
   },
   {
     icon: BookOpen,
     title: "Academic Management",
-    description: "Curriculum planning, subject allocation, grading system, and report card generation.",
+    description:
+      "Manage classes, subjects, timetables, and curriculum with automated scheduling and conflict resolution.",
   },
   {
     icon: Calendar,
-    title: "Timetable Management",
-    description: "Automated timetable generation, class scheduling, and resource allocation.",
+    title: "Attendance Tracking",
+    description: "Real-time attendance monitoring with automated reports and parent notifications.",
   },
   {
-    icon: CreditCard,
-    title: "Fee Management",
-    description: "Fee structure setup, invoice generation, payment tracking, and financial reporting.",
+    icon: BarChart3,
+    title: "Grading & Analytics",
+    description: "Automated grading system with detailed analytics and performance tracking for students and classes.",
+  },
+  {
+    icon: DollarSign,
+    title: "Financial Management",
+    description:
+      "Complete fee management with invoicing, payment tracking, and integration with M-PESA and other payment gateways.",
   },
   {
     icon: MessageSquare,
     title: "Communication Hub",
-    description: "SMS/Email notifications, parent-teacher communication, and announcement system.",
+    description: "Internal messaging, SMS alerts, email notifications, and parent-teacher communication portal.",
   },
   {
-    icon: BarChart3,
-    title: "Analytics & Reports",
-    description: "Performance analytics, attendance reports, financial insights, and custom dashboards.",
+    icon: FileText,
+    title: "E-Learning Platform",
+    description: "Upload study materials, create quizzes, assignments, and integrate with video conferencing tools.",
   },
   {
     icon: Shield,
     title: "Multi-Tenant Security",
-    description: "School-specific data isolation, role-based access control, and secure authentication.",
+    description: "Secure multi-school architecture with data isolation and role-based permissions.",
   },
   {
     icon: Smartphone,
-    title: "Mobile Application",
-    description: "Native mobile apps for students, parents, and teachers with offline capabilities.",
+    title: "Mobile App",
+    description: "Native mobile applications for students, parents, and teachers with offline capabilities.",
   },
   {
-    icon: Cloud,
-    title: "Cloud-Based Platform",
-    description: "Secure cloud hosting, automatic backups, and 99.9% uptime guarantee.",
+    icon: Clock,
+    title: "Timetable Management",
+    description: "Automated timetable generation with conflict detection and resource optimization.",
+  },
+  {
+    icon: CreditCard,
+    title: "Payment Integration",
+    description:
+      "Seamless integration with local and international payment providers including M-PESA, Stripe, and Flutterwave.",
+  },
+  {
+    icon: Bell,
+    title: "Notifications & Alerts",
+    description: "Real-time notifications for important events, deadlines, and updates across all platforms.",
   },
 ]
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="py-20 bg-white">
+    <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Comprehensive School Management Features
+            Everything You Need to Manage Your School
           </h2>
-          <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-            Everything you need to run your educational institution efficiently, from student enrollment to financial
-            management.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Our comprehensive school management system provides all the tools you need to streamline operations, improve
+            communication, and enhance the educational experience.
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <Card key={index} className="border-gray-200 hover:shadow-lg transition-shadow">
-              <CardHeader>
-                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                  <feature.icon className="w-6 h-6 text-red-500" />
-                </div>
-                <CardTitle className="text-xl font-semibold text-gray-900">{feature.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-gray-600">{feature.description}</CardDescription>
-              </CardContent>
-            </Card>
+            <div
+              key={index}
+              className="group p-6 rounded-2xl border border-gray-200 hover:border-red-200 hover:shadow-lg transition-all duration-300"
+            >
+              <div className="w-12 h-12 bg-gradient-to-r from-red-500 to-pink-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
+                <feature.icon className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
+              <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+            </div>
           ))}
         </div>
       </div>
